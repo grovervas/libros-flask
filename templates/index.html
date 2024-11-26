@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Listado de Cursos</h1>
+    <div>Total cursos: {{ total }}</div>
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Curso</th>
+                <th>Instructor</th>
+                <th>Topico</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for curso in datos %}
+            <tr>
+                <td>{{curso.id}}</td>
+                <td>{{curso.nombre}}</td>
+                <td>{{curso.instructor}}</td>
+                <td>{{curso.topico}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
