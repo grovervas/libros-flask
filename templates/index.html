@@ -2,18 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>Listado de Cursos</title>
 </head>
 <body>
     <h1>Listado de Cursos</h1>
     <div>Total cursos: {{ total }}</div>
-    <table>
+    <a href="{{url_for('insertar_curso')}}">Insertar curso</a>
+    <table border="1">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Curso</th>
                 <th>Instructor</th>
                 <th>Topico</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -23,6 +25,7 @@
                 <td>{{curso.nombre}}</td>
                 <td>{{curso.instructor}}</td>
                 <td>{{curso.topico}}</td>
+                <td><a href="curso/{{curso.id}}">Ver</a></td>
             </tr>
             {% endfor %}
         </tbody>
