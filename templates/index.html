@@ -25,7 +25,11 @@
                 <td>{{curso.nombre}}</td>
                 <td>{{curso.instructor}}</td>
                 <td>{{curso.topico}}</td>
-                <td><a href="curso/{{curso.id}}">Ver</a></td>
+                <td>
+                    <a href="curso/{{curso.id}}">Ver</a>
+                    <a href="editar-curso/{{curso.id}}">Editar</a>
+                    <a href="eliminar-curso/{{curso.id}}">Eliminar</a>
+                </td>
             </tr>
             {% endfor %}
         </tbody>

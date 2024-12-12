@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Curso</title>
+</head>
+<body>
+    <h1>Editar Curso</h1>
+    <form method="POST">
+        {{formulario.csrf_token}}
+        <div>
+            {{formulario.nombre.label}}
+            {{formulario.nombre(size=50)}}
+        </div></br>
+        <div>
+            {{formulario.instructor.label}}
+            {{formulario.instructor(size=50)}}
+        </div></br>
+        <div>
+            {{formulario.topico.label}}
+            {{formulario.topico(size=25)}}
+        </div></br>
+        <div>
+            {{formulario.enviar}}
+            <a href="{{url_for('inicio')}}">Cancelar</a>
+        </div>
+    </form>
+</body>
+</html>

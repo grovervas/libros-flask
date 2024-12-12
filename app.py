@@ -51,7 +51,8 @@ app.config['SECRET_KEY']='llave_secreta'
 
 @app.route('/')
 def inicio():
-    cursos = Curso.query.all()
+    #cursos = Curso.query.all()
+    cursos = Curso.query.order_by('id')
     total_cursos = Curso.query.count()
     app.logger.debug(f'Listado de cursos: {cursos}')    
     return render_template('index.html', datos=cursos, total=total_cursos)
@@ -76,3 +77,23 @@ def insertar_curso():
             return redirect(url_for('inicio'))
         
     return render_template('insertar-curso.html', formulario = cursoForm)
+
+@app.route('/editar-curso/<int:id>', methods=['GET', 'POST'])
+def editar_curso(id):
+    curso = Curso.query.get_or_404(id)
+    #curso = Curso.query.get(id)
+    cursoForm = CursoForm(obj=curso)
+    if request.method == 'POST':
+        if cursoForm.validate_on_submit():
+            cursoForm.populate_obj(curso)
+            app.logger.debug(f'Curso a actualizar: {curso}')
+            db.session.commit()
+            return redirect(url_for('inicio'))
+    return render_template('editar-curso.html', formulario = cursoForm)
+
+@app.route('/eliminar-curso/<int:id>')
+def eliminar_curso(id):
+    curso = Curso.query.get_or_404(id)
+    db.session.delete(curso)
+    db.session.commit()
+    return redirect(url_for('inicio'))
